@@ -1,0 +1,28 @@
+#! /bin/sh
+
+pgrep -x sxhkd > /dev/null || sxhkd &
+
+# autostart
+picom &
+nitrogen --restore &
+sxhkd &
+sh ~/.config/polybar/ln.sh &
+unclutter &
+xsetroot -cursor_name left_ptr &
+
+# bspwm
+bspc monitor -d 1 2 3 4 5
+bspc config border_width         2
+bspc config normal_border_color \#C2CBFF
+bspc config active_border_color \#C2CBFF
+bspc config focused_border_color \#B698DF
+bspc config window_gap          12
+bspc config top_padding 30
+bspc config split_ratio          0.52
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+# rules
+bspc rule -a Chromium desktop=^2
+bspc rule -a Firefox-esr desktop=^2
+bspc rule -a mpv desktop=^1
+bspc rule -a TelegramDesktop desktop=^3
